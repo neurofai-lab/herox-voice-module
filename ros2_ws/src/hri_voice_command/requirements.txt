@@ -1,0 +1,8 @@
+openai-whisper
+sounddevice
+numpy==1.24.4
+soundfile
+noisereduce
+webrtcvad
+scipy
+PyYAML

@@ -1,0 +1,10 @@
+name: hri_voice_command
+launch: hri_voice_command.launch.py
+description: ROS2 Whisper-based wake-word and voice-command node.
+
+ros4hri_outputs:
+  - /humans/voices/tracked
+  - /humans/voices/<voice_id>/is_speaking
+  - /humans/voices/<voice_id>/speech
+  - /humans/voices/<voice_id>/command
+  - /humans/voices/<voice_id>/command_id

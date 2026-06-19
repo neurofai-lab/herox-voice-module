@@ -1,0 +1,15 @@
+# Command dictionary
+VOICE_COMMANDS:
+  start system: 0
+  move to station 1: 1
+  go to the access point at station 1: 1
+  screw the battery pack on the right: 2
+  screw the battery pack on the left: 3
+  return to the access point: 4
+  return to the waiting point: 5
+  go to the charging station: 6
+  have you finished the screwing operation: 7
+  stop system: 8
+
+# Common transcription variations
+WAKE_WORDS: ['computer', 'compute her', 'come puter', 'come put her', 'compute']

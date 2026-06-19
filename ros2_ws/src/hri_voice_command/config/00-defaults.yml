@@ -1,0 +1,11 @@
+# Default ROS-style configuration placeholder.
+# The active command/wake-word dictionary is in config.yaml.
+hri_voice_command:
+  ros__parameters:
+    model: small
+    wake_model: tiny
+    language: en
+    use_vad: true
+    text_topic: /transcribed_text
+    command_topic: /voice_command
+    command_id_topic: /voice_command_id
