@@ -1,4 +1,4 @@
-# HERoX Voice Command Recognition Module
+# HEROX Voice Command Recognition Module
 
 Reusable ROS 2/Vulcanexus-compatible HRI voice module extracted from the HERoX demonstrator. The module listens for wake words, records operator commands, transcribes speech using Whisper, matches configurable command phrases, and publishes command outputs through ROS 2 and ROS4HRI-style voice topics.
 
