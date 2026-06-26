@@ -4,17 +4,17 @@
   <version>0.1.0</version>
   <description>ROS2 Whisper VAD-gated wake-word and voice-command recognition node.</description>
 
-  <maintainer email="ceo@neurofai.de">NeuroFAI</maintainer>
-  <license>AGPL-3.0</license>
+  <maintainer email="shino.sam@dfki.de">Shino Sam</maintainer>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
 
-  <depend>rclpy</depend>
-  <depend>ament_index_python</depend>
-  <depend>std_msgs</depend>
-  <depend>hri_msgs</depend>
-  <depend>python3-numpy</depend>
-  <depend>python3-yaml</depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>hri_msgs</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
