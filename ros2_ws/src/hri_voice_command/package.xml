@@ -1,23 +1,20 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>hri_person_detect</name>
+  <name>hri_voice_command</name>
   <version>0.1.0</version>
-  <description>ROS2 package for person-only RTMDet instance segmentation, DeepSort tracking, and Realsense depth-based 3D bounding box publishing.</description>
+  <description>ROS2 Whisper VAD-gated wake-word and voice-command recognition node.</description>
 
   <maintainer email="ceo@neurofai.de">NeuroFAI</maintainer>
   <license>AGPL-3.0</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
 
-  <depend>ament_index_python</depend>
   <depend>rclpy</depend>
-  <depend>sensor_msgs</depend>
-  <depend>vision_msgs</depend>
-  <depend>geometry_msgs</depend>
+  <depend>ament_index_python</depend>
   <depend>std_msgs</depend>
   <depend>hri_msgs</depend>
-  <depend>cv_bridge</depend>
-  <depend>message_filters</depend>
+  <depend>python3-numpy</depend>
+  <depend>python3-yaml</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
