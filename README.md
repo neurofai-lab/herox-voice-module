@@ -1,4 +1,4 @@
-# hri_voice_command
+# HEROX Voice Module
 
 ROS2 package for VAD-gated wake-word and voice-command recognition using Whisper.
 
