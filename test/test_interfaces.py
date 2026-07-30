@@ -1,5 +1,3 @@
-"""Minimal repository checks for the HEROX voice module."""
-
 from pathlib import Path
 
 
