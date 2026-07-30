@@ -105,3 +105,93 @@ Application-specific command extension topics are also published under the same 
 - `/humans/voices/anonymous_speaker/command_id` (`std_msgs/Int32`)
 
 The legacy topics `/transcribed_text`, `/voice_command`, and `/voice_command_id` are preserved for backward compatibility.
+
+# ROS 2 Interfaces and Configuration
+
+This section documents the inputs, outputs, message types, and configurable runtime options of the HEROX voice module.
+
+## Input interface
+
+The module receives live mono audio directly from a system microphone through the Python `sounddevice` library. It does not subscribe to a ROS 2 audio topic.
+
+| Input | Type | Description |
+|---|---|---|
+| System microphone | Mono PCM audio at `16 kHz` | Audio used for voice-activity, wake-word, and command recognition |
+| `config/config.yaml` | YAML file | Defines accepted wake words, command phrases, and command IDs |
+
+A different command configuration file can be selected with:
+
+```bash
+export HRI_VOICE_COMMAND_CONFIG=/absolute/path/to/config.yaml
+```
+
+## Output topics
+
+### Application topics
+
+| Topic | Message type | Description |
+|---|---|---|
+| `/transcribed_text` | `std_msgs/msg/String` | Full transcription of an accepted command utterance |
+| `/voice_command` | `std_msgs/msg/String` | Recognized command text |
+| `/voice_command_id` | `std_msgs/msg/Int32` | Numeric ID assigned to the recognized command |
+
+These outputs are published when the transcription matches a configured command.
+
+### ROS4HRI topics
+
+| Topic | Message type | Description |
+|---|---|---|
+| `/humans/voices/tracked` | `hri_msgs/msg/IdsList` | Publishes the configured voice ID once per second |
+| `/humans/voices/<voice_id>/is_speaking` | `std_msgs/msg/Bool` | Indicates whether command audio is being captured |
+| `/humans/voices/<voice_id>/speech` | `hri_msgs/msg/LiveSpeech` | Publishes the final accepted transcription |
+| `/humans/voices/<voice_id>/command` | `std_msgs/msg/String` | HEROX-specific command text output |
+| `/humans/voices/<voice_id>/command_id` | `std_msgs/msg/Int32` | HEROX-specific command ID output |
+
+The default voice ID is `anonymous_speaker`. Therefore, the default speech topic is:
+
+```text
+/humans/voices/anonymous_speaker/speech
+```
+
+In `hri_msgs/msg/LiveSpeech`, the `final` field contains the transcription, `locale` contains the configured language locale, and `confidence` contains the command-matching similarity score.
+
+## Configurable parameters
+
+The following options are exposed by the launch file.
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `model` | string | `small` | Whisper model used for command transcription |
+| `wake_model` | string | `tiny` | Whisper model used for wake-word detection |
+| `language` | string | `en` | Whisper language code |
+| `wake_threshold` | float | `0.70` | Minimum wake-word similarity score |
+| `cmd_threshold` | float | `0.70` | Minimum command similarity score |
+| `cmd_max` | float | `4.0` | Maximum command recording duration in seconds |
+| `text_topic` | string | `/transcribed_text` | Transcription output topic |
+| `cmd_topic` | string | `/voice_command` | Command text output topic |
+| `cmd_id_topic` | string | `/voice_command_id` | Command ID output topic |
+| `hri_voice_id` | string | `anonymous_speaker` | Voice ID used in ROS4HRI topic names |
+| `hri_locale` | string | `en_US` | Locale used in `hri_msgs/msg/LiveSpeech` |
+
+Additional executable options include:
+
+| Option | Default | Description |
+|---|---|---|
+| `--device` | automatic | Microphone device index |
+| `--vad-aggressiveness` | `2` | WebRTC VAD aggressiveness from `0` to `3` |
+| `--vad-frame-ms` | `20` | VAD frame size in milliseconds |
+| `--wake-words` | values from YAML | Accepted wake words |
+| `--cmd-end-silence-ms` | `600` | Trailing silence used to end command capture |
+| `--no-enhancement` | disabled | Disables audio enhancement and noise reduction |
+
+## Interface verification
+
+```bash
+ros2 topic type /transcribed_text
+ros2 topic type /voice_command_id
+ros2 topic type /humans/voices/tracked
+
+ros2 topic echo /voice_command
+ros2 topic echo /voice_command_id
+```
+
