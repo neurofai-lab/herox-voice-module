@@ -5,7 +5,7 @@
   <description>ROS2 Whisper VAD-gated wake-word and voice-command recognition node.</description>
 
   <maintainer email="shino.sam@dfki.de">Shino Sam</maintainer>
-  <license>Apache License 2.0</license>
+  <license>GNU AGPL v3</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
 
