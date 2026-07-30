@@ -21,7 +21,7 @@ setup(
     maintainer='Shino Sam',
     maintainer_email='shino.sam@dfki.de',
     description='ROS2 Whisper VAD-gated wake-word and voice-command recognition node.',
-    license='Apache License 2.0',
+    license='GNU AGPL v3',
     entry_points={
         'console_scripts': [
             'hri_voice_command = hri_voice_command.node_voice_command:main',
